@@ -63,15 +63,14 @@ test('opening product item', async ({ page }) => {
   await loginToSauceDemo(page, 'standard_user', 'secret_sauce');
   await expect(page.locator('xpath=//*[@class=\'inventory_item_description\']//a[@role=\'button\']').first()).toBeVisible();
   const product = page.locator('xpath=//*[@class="inventory_item"]').first();
-  //const productName = await product.locator('.inventory_item_name').innerText();
-  //const productDescription = await product.locator('.inventory_item_desc').innerText();
-  //const productPrice = await product.locator('.inventory_item_price').innerText();
+  const productName = await product.locator('xpath=//*[@class="inventory_item_name "]').innerText();
+  const productDescription = await product.locator('xpath=//*[@class="inventory_item_desc"]').innerText();
+  const productPrice = await product.locator('xpath=//*[@class="inventory_item_price"]').innerText();
   await product.locator('xpath=//*[@class=\'inventory_item_description\']//a[@role=\'button\']').click();
-   await expect(page.locator('[data-test="back-to-products"]')).toBeVisible();
-  await expect(page.locator('[data-test="inventory-item-name"]')).toHaveText(await product.locator('xpath=//*[@class="inventory_item_name"]').innerText());
-  await expect(page.locator('[data-test="inventory-item-desc"]')).toHaveText(await product.locator('xpath=//*[@class="inventory_item_desc"]').innerText());
-  await expect(page.locator('[data-test="inventory-item-price"]')).toHaveText(await product.locator('xpath=//*[@class="inventory-item-price"]').innerText());
-  
+  await expect(page.locator('[data-test="back-to-products"]')).toBeVisible();
+  await expect(page.locator('[data-test="inventory-item-name"]')).toHaveText(productName);
+  await expect(page.locator('[data-test="inventory-item-desc"]')).toHaveText(productDescription);
+  await expect(page.locator('[data-test="inventory-item-price"]')).toHaveText(productPrice);
 });
 
 test('open each product and check its URL', async ({ page }) => {
