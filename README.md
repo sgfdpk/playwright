@@ -11,6 +11,10 @@ https://github.com/sgfdpk/playwright/actions/workflows/playwright.yml - по э�
 Ожидаемо: запросы не должен был пройти валидацию и значеия не должны сохраняться
 Фактически: запрос проходит и значение сохраняется
 
+Тесты: 
+    update a booking with checkout before checkin update
+    create booking with checkout before checkin returns non-200
+
 
 **2:** Кнопка [Checkout] доступна при пустой корзине
 
@@ -20,6 +24,9 @@ https://github.com/sgfdpk/playwright/actions/workflows/playwright.yml - по э�
 
 * Такое же поведение после добавления и позже удаления объекта в корзине
 
+Тесты: 
+    empty shopping card
+    add/remove shopping card
 
 **3:** Невозможно добавить один и тот же объект более 1 раза
 
@@ -27,8 +34,14 @@ https://github.com/sgfdpk/playwright/actions/workflows/playwright.yml - по э�
 Ожидаемо: Кнопка [Add to cart] доступна и объект можно добавить повторно 
 Фактически: Кнопка [Add to cart] заменяется кнопкой [Remove] и объект нельзя добавть повторно
 
+Тесты: 
+    add the same product twice to the shopping cart
+
 **4:** [Add to cart\Remove] не реагирует на [Reset App State]
 
 Шаги: Добавить объект в корзину кнопкой [Add to cart] -> кнопка меняется на [Remove] -> нажать [Reset App State] в меню
 Ожидаемо: Состояние страницы меняется на изначальное
 Фактически: Кнопка [Remove] остается неизменной
+
+Тесты: 
+    reset app state after adding a product from the catalog
