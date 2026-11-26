@@ -55,6 +55,7 @@ test('reset app state after adding a product from the catalog', async ({ page })
   await expect(page.locator('[data-test="shopping-cart-badge"]')).toHaveText('1');
 
   await page.getByRole('button', { name: 'Open Menu' }).click();
+  await expect(page.locator('[data-test="reset-sidebar-link"]')).toBeVisible();
   await page.locator('[data-test="reset-sidebar-link"]').click();
 
   await expect(page.locator('[data-test="shopping-cart-badge"]')).not.toBeVisible();
