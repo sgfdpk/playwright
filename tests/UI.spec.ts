@@ -47,6 +47,20 @@ test('add/remove shopping card', async ({ page }) => {
    await page.locator('xpath=//*[@id="inventory_container"]//div[@class="inventory_item"][1]//button').click();
 });
 
+test('reset app state after adding a product from the catalog', async ({ page }) => {
+  await loginToSauceDemo(page, 'standard_user', 'secret_sauce');
+
+  const addToCartButton = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
+  await addToCartButton.click();
+  await expect(page.locator('[data-test="shopping-cart-badge"]')).toHaveText('1');
+
+  await page.getByRole('button', { name: 'Open Menu' }).click();
+  await page.locator('[data-test="reset-sidebar-link"]').click();
+
+  await expect(page.locator('[data-test="shopping-cart-badge"]')).not.toBeVisible();
+  await expect(addToCartButton).toBeVisible();
+});
+
 test('add the same product twice to the shopping cart', async ({ page }) => {
   await loginToSauceDemo(page, 'standard_user', 'secret_sauce');
 
